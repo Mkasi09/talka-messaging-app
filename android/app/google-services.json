@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "26940563813",
+    "project_id": "talka-87a28",
+    "storage_bucket": "talka-87a28.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:26940563813:android:8d098e9fce15c43f1a818c",
+        "android_client_info": {
+          "package_name": "com.example.talka"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_lgEuSRH03WpI81M6oL328CnmB2t-plI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
