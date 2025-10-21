@@ -7,6 +7,7 @@ import 'package:talka/screens/profile_screen.dart';
 
 import 'chat_detail_screen.dart';
 import 'chat_screen.dart';
+import 'local_contacts.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -25,62 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
     const ProfileScreen(),
   ];
 
-  final List<String> _appBarTitles = ['Chats', 'Status', 'Calls', 'Profile'];
-  void _showNewChatDialog(BuildContext context) {
-    final contacts = [
-      {'name': 'Alice', 'phone': '+1234567890'},
-      {'name': 'Bob', 'phone': '+1234567891'},
-      {'name': 'Charlie', 'phone': '+1234567892'},
-      {'name': 'Diana', 'phone': '+1234567893'},
-      {'name': 'Eve', 'phone': '+1234567894'},
-    ];
-
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(
-          'New Chat',
-          style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
-        ),
-        content: SizedBox(
-          width: double.maxFinite,
-          child: ListView.builder(
-            shrinkWrap: true,
-            itemCount: contacts.length,
-            itemBuilder: (context, index) {
-              final contact = contacts[index];
-              return ListTile(
-                leading: CircleAvatar(
-                  backgroundColor: Colors.blue[100],
-                  child: Icon(Icons.person, color: Colors.blue[800]),
-                ),
-                title: Text(contact['name']!),
-                subtitle: Text(contact['phone']!),
-                onTap: () {
-                  Navigator.pop(context);
-                  // Navigate to chat detail
-                  final chatId = _getChatId(
-                    FirebaseAuth.instance.currentUser!.phoneNumber!,
-                    contact['phone']!,
-                  );
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ChatDetailScreen(
-                        chatId: chatId,
-                        contactName: contact['name']!,
-                        contactPhone: contact['phone']!,
-                      ),
-                    ),
-                  );
-                },
-              );
-            },
-          ),
-        ),
-      ),
-    );
-  }
+  final List<String> _appBarTitles = ['Talka', 'Status', 'Calls', 'Profile'];
 
   String _getChatId(String phone1, String phone2) {
     List<String> phones = [phone1, phone2];
@@ -219,7 +165,12 @@ class _HomeScreenState extends State<HomeScreen> {
       case 0: // Chats
         return FloatingActionButton(
           onPressed: () {
-            _showNewChatDialog(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const LocalContactsScreen(),
+              ),
+            );
           },
           backgroundColor: Colors.blue[600],
           child: const Icon(Icons.chat, color: Colors.white),
